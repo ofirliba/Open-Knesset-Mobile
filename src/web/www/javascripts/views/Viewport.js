@@ -18,6 +18,19 @@ OKnesset.app.views.Viewport = new Ext.extend(Ext.Panel, {
             id: 'emailReview',
             iconMask: true,
             iconCls: 'mail',
+        },{
+        	//The "Comm" icon at the top left tool bar of the application
+         	ui: 'action',
+            id: 'allComm',
+            iconMask: true,
+          	text:"committees",
+        },{
+        	//protocol button
+        	// delete this button after implement the protocol page.
+         	ui: 'action',
+            id: 'prot',
+            iconMask: true,
+          	text:"TEMPprotocol",
         }, {
             xtype: 'spacer'
         }, {
