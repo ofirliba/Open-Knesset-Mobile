@@ -70,11 +70,11 @@ OKnesset.app.views.ProtocolView.Members = new Ext.extend(Ext.List, {
 	scroll: false,
     maxHeight: '50px',
 	//itemTpl : '<div>{members}</div>',
-	//store : OKnesset.ProtocolStore,
-	itemTpl : '<tpl for="mks_attended">
-    {name}
-    </tpl>', 
-	store : OKnesset.Protocol2Store,
+	//store : OKnesset.ProtocolStore
+  
+    //itemTpl : '<tpl for="mks_attended[0]"><p>{name}</p> </tpl>',
+    itemTpl : '<div>{name}</div>',
+	store : OKnesset.ProtocolMembersStore,
 	onItemDisclosure : true
 });
 OKnesset.app.views.ProtocolView.Text = new Ext.extend(Ext.List, {
@@ -85,6 +85,7 @@ OKnesset.app.views.ProtocolView.Text = new Ext.extend(Ext.List, {
     maxHeight: '50px',
 	//itemTpl : '<div>{text}</div>',
 	//store : OKnesset.ProtocolStore,
+    //var protocolArray = protocol_text.split(/[<>]/);
 	itemTpl : '<div>{protocol_text}</div>',
 	store : OKnesset.Protocol2Store,
 	onItemDisclosure : true

@@ -33,14 +33,20 @@ Ext.regController('Protocol', {
     		    onFailure : function(){console.log("failure");},
     			callback : function(data){
             	 var tmpArray = [];
-                 tmpArray.push(data);
-                 //tmpArray.push(convertProtocolData(data));
+            	 tmpArray.push(data);
+            	 //console.log(data);
+                 //console.log(tmpArray);
+                 OKnesset.Protocol2Store.loadData(tmpArray);
                  
-                 
-    		    	OKnesset.Protocol2Store.loadData(tmpArray);
-    		    	 console.log(data);
+            	 var tmpMemArray = [];
+            	 tmpMemArray.push(data.mks_attended);
+            	 OKnesset.ProtocolMembersStore.loadData(data.mks_attended);
+            	 //console.log(data.mks_attended);
+            	 //console.log(tmpMemArray);
     		    	
     		    
+    		    	
+    		    	
     		    	},
     			//onFailure : function(){console.log("Failure!");}
     		});

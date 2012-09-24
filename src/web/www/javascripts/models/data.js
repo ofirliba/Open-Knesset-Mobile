@@ -22,6 +22,15 @@ OKnesset.Protocol2Store = new Ext.data.Store({
     
 });
 
+Ext.regModel('ProtocolMembers', {
+    fields: ['name','url']
+});
+
+OKnesset.ProtocolMembersStore = new Ext.data.Store({
+    model: 'ProtocolMembers',
+    
+});
+
 
 
 Ext.regModel('Party', {
