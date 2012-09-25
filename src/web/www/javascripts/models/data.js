@@ -1,17 +1,3 @@
-Ext.regModel('Protocol', {
-    fields: ['num','title','members','text']
-});
-
-OKnesset.ProtocolStore = new Ext.data.Store({
-    model: 'Protocol',
-    //temp data, need to take the data from the site
-    	data:[
-    	      {id:213, num: '123',  title: 'ABC '    , members: 'ציפי לבני ' , text: ' ABCDEFGHI'},
-    	      {id:720, num: '456',  title: 'DEF '    , members: 'שאול מופז '   , text: ' ABCDEFGHI'},
-    	      {id:8, num: '789',  title: 'GHI '    , members: 'דליה איציק '   , text: ' ABCDEFGHI'},
-    	      {id:735, num: '1011',  title: 'JKL '    , members: 'רוני בר און '  , text: ' ABCDEFGHI'}
-    	      ]
-});
 
 Ext.regModel('Protocol2', {
     fields: ['topics','protocol_text','committee','date', 'mks_attended']
@@ -28,6 +14,15 @@ Ext.regModel('ProtocolMembers', {
 
 OKnesset.ProtocolMembersStore = new Ext.data.Store({
     model: 'ProtocolMembers',
+    
+});
+
+Ext.regModel('ProtocolTopics', {
+    fields: ['topics','protocol_text','committee','date', 'mks_attended']
+});
+
+OKnesset.ProtocolTopicsStore = new Ext.data.Store({
+    model: 'ProtocolTopics',
     
 });
 

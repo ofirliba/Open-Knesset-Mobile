@@ -82,12 +82,15 @@ OKnesset.app.views.ProtocolView.Text = new Ext.extend(Ext.List, {
 	layout: ' fit',
 	padding: '5',
     scroll: false,
-    maxHeight: '50px',
-	//itemTpl : '<div>{text}</div>',
-	//store : OKnesset.ProtocolStore,
-    //var protocolArray = protocol_text.split(/[<>]/);
-	itemTpl : '<div>{protocol_text}</div>',
-	store : OKnesset.Protocol2Store,
+    //maxHeight: '50px',
+	//itemTpl : '<div>{protocol_text}</div>',
+	//store : OKnesset.Protocol2Store,
+   
+    //itemTpl : '<div>{#}{text1}</div>',
+   
+
+    itemTpl: '<div><i>{#} {protocol_text} </i></div>',
+  	store : OKnesset.ProtocolTopicsStore,
 	onItemDisclosure : true
 });
 

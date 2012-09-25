@@ -27,28 +27,28 @@ Ext.regController('Protocol', {
             console.log('Ok2');
             
             Ext.util.JSONP.request({
-    		    url: 'http://www.oknesset.org/api/committeemeeting/6728/',
-    		    //params:{format:'jsonp'},
+    		    url: 'http://www.oknesset.org/api/committeemeeting/6720/',
     		    callbackKey : "callback",
     		    onFailure : function(){console.log("failure");},
     			callback : function(data){
-            	 var tmpArray = [];
+    		     // creating ProtocolStore
+    		     var tmpArray = [];
             	 tmpArray.push(data);
-            	 //console.log(data);
-                 //console.log(tmpArray);
+            	// console.log(data);
                  OKnesset.Protocol2Store.loadData(tmpArray);
-                 
-            	 var tmpMemArray = [];
-            	 tmpMemArray.push(data.mks_attended);
+                 // creating ProtocolMembersStore
             	 OKnesset.ProtocolMembersStore.loadData(data.mks_attended);
-            	 //console.log(data.mks_attended);
-            	 //console.log(tmpMemArray);
-    		    	
-    		    
-    		    	
-    		    	
-    		    	},
-    			//onFailure : function(){console.log("Failure!");}
+            	// creating ProtocolTextStore
+            	 var protocolArray = [];
+        	     var protocolArray= data.protocol_text.split(/[<>]/);
+            	 var protocolText =[];
+            	 protocolArray.forEach(function(e){
+            		 protocolText.push({protocol_text: e});
+            	 });
+            	 console.log(protocolText);
+            	 OKnesset.ProtocolTopicsStore.loadData(protocolText);
+         
+    		    },
     		});
            
         }
