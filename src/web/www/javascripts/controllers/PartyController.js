@@ -19,12 +19,14 @@ Ext.regController('Party', {
         var party = OKnesset.PartyStore.findBy(function(r){return r.data.id === parseInt(options.id)});
         party = OKnesset.PartyStore.getAt(party);
         var name = party.data.name;
-        console.log(party);
+       // console.log(party);
         // Analytics
     	GATrackParty(name);
 
     	// Set the page's data
+    	
         OKnesset.MemberStore.loadData(party.data.members, false);
+        console.log(OKnesset.MemberStore);
         // TODO currentParty is only needed for the email widget. Find a better way to fetch the current party
     	this.currentParty = party.data;
 

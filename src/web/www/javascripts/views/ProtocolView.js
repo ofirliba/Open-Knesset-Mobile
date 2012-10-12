@@ -4,17 +4,12 @@
  */
 
 OKnesset.app.views.ProtocolView = new Ext.extend(Ext.Panel, {
-    //id: 'ProtocolView',
-   // layout: ' fit',
 	scroll: 'vertical',
-	
 	initComponent: function()
     {
 		this.protocolTitle = new OKnesset.app.views.ProtocolView.Title();
 		this.protocolMembers = new OKnesset.app.views.ProtocolView.Members();
 		this.protocolText = new OKnesset.app.views.ProtocolView.Text();
-		//this.fullscreen=true;
-		
 		this.items = [
 		              
 		              new Ext.Panel({
@@ -53,11 +48,7 @@ OKnesset.app.views.ProtocolView.Title = new Ext.extend(Ext.List, {
 	id : 'ProtocolTitle',
 	layout: ' fit',
 	padding: '5',
-     scroll: false,
-    //maxHeight: '50px',
-    
-    //itemTpl : '<div>{title}</div>',
-    //store : OKnesset.ProtocolStore,
+    scroll: false,
     itemTpl :'<div class="ProtocolTopics">{topics}</div>',	
 	store : OKnesset.Protocol2Store,
 	
@@ -69,10 +60,6 @@ OKnesset.app.views.ProtocolView.Members = new Ext.extend(Ext.List, {
 	padding: '5',
 	scroll: false,
     maxHeight: '50px',
-	//itemTpl : '<div>{members}</div>',
-	//store : OKnesset.ProtocolStore
-  
-    //itemTpl : '<tpl for="mks_attended[0]"><p>{name}</p> </tpl>',
     itemTpl : '<div>{name}</div>',
 	store : OKnesset.ProtocolMembersStore,
 	onItemDisclosure : true
@@ -82,16 +69,10 @@ OKnesset.app.views.ProtocolView.Text = new Ext.extend(Ext.List, {
 	layout: ' fit',
 	padding: '5',
     scroll: false,
-    //maxHeight: '50px',
-	//itemTpl : '<div>{protocol_text}</div>',
-	//store : OKnesset.Protocol2Store,
-   
-    //itemTpl : '<div>{#}{text1}</div>',
-   
-
-    itemTpl: '<div><i>{#} {protocol_text} </i></div>',
+    itemTpl: '<div>{protocol_text}</div>',
   	store : OKnesset.ProtocolTopicsStore,
-	onItemDisclosure : true
+	onItemDisclosure : false,
+	
 });
 
 

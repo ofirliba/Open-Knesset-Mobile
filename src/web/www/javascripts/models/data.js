@@ -26,6 +26,16 @@ OKnesset.ProtocolTopicsStore = new Ext.data.Store({
     
 });
 
+OKnesset.ProtocolTopicsStoreEven = new Ext.data.Store({
+    model: 'ProtocolTopics',
+    
+});
+
+OKnesset.ProtocolTopicsStoreOdd = new Ext.data.Store({
+    model: 'ProtocolTopics',
+    
+});
+
 
 
 Ext.regModel('Party', {

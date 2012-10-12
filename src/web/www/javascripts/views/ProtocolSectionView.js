@@ -5,35 +5,33 @@
 
 OKnesset.app.views.ProtocolSectionView = new Ext.extend(Ext.Panel, {
     id: 'ProtocolSectionView',
-   
+    scroll: 'vertical',
 	initComponent: function()
     {
 		
 		this.image = new OKnesset.app.views.ProtocolSectionView.SpokemanImage();
 		this.protocolsectionText=  new OKnesset.app.views.ProtocolSectionView.Text();
-		this.protocolsectionBar= new OKnesset.app.views.ProtocolSectionView.Bar();
-		
-		this.items = [this.protocolsectionText,this.protocolsectionBar];
+		this.spokeman = new OKnesset.app.views.ProtocolSectionView.Spokeman();
+	
+		this.items = [this.protocolsectionText];
 		this.dockedItems = 
 				[{
 					xtype: 'toolbar',
 					dock: 'top',
 					height: '75px',
 					maxHeight:'100px',
+					
 					padding: '5' ,
-					items: [
-					        	this.image
-							,{
-					        		xtype: 'spacer'
-							}, {
-								ui: 'plain',
-								id: 'spokeman',
-								iconMask: true,
-								text:'<font size="7"> spokeman</font>'
-		         			}]
+					items: [this.image,{xtype: 'spacer'},this.spokeman]
+				 },{
+					xtype: 'toolbar',
+					height: '75px',
+					maxHeight:'100px',
+					padding: '5' ,
+				    dock: 'bottom',
+					items: [{ui: 'action',id: 'next_spokemanBtn',iconMask: true,text: 'next_spokeman',}, {xtype: 'spacer' },{ui: 'action',id: 'pre_spokemanBtn',iconMask: true,text: 'pre_spokeman',}]
 				 }];
 
-		
 		 OKnesset.app.views.ProtocolSectionView.superclass.initComponent.apply(this, arguments);
     }
 });
@@ -41,39 +39,22 @@ OKnesset.app.views.ProtocolSectionView = new Ext.extend(Ext.Panel, {
 
 Ext.reg('ProtocolSectionView', OKnesset.app.views.ProtocolSectionView);
 
-
-OKnesset.app.views.ProtocolSectionView.Text = new Ext.extend(Ext.List, {
+OKnesset.app.views.ProtocolSectionView.Text = new Ext.extend(Ext.Panel, {
 	id : 'Text',
-	layout: ' fit',
-	itemTpl : '<div>{text}</div>',
-	store : OKnesset.ProtocolStore,
+	height : "2em",
+	padding: '5',
+	tpl:'<div dir="rtl">{protocol_text}</div>', 
 	
-});
-
-OKnesset.app.views.ProtocolSectionView.Bar = new Ext.extend(Ext.Toolbar,{
-	dock: 'bottom',
-	items: [{
-	    	 	ui: 'plain',
-	    	 	id: 'next spokeman',
-	    	 	iconMask: true,
-	    	 	text: 'next spokeman',
-	}, {
-		xtype: 'spacer' 
-	},{
-         		ui: 'plain',
-         		id: 'pre spokeman',
-         		iconMask: true,
-         		text: 'pre spokeman',
-     	}],
 });
 
 OKnesset.app.views.ProtocolSectionView.SpokemanImage = new Ext.extend(Ext.Panel, {
     id: 'SpokemanImage',
     height : "5em",
-	//html:'שם הדובר',
-    //tpl: '<img src="http://www.knesset.gov.il/mk/images/members/livnee_zipi-s.jpg" height="100%"></img>'
-    html: '<img src="http://www.knesset.gov.il/mk/images/members/livnee_zipi-s.jpg" height="100%"></img>'
+    html: '<img src="http://www.inspiredhealthcoaching.com/wp-content/uploads/2012/08/red_x.jpg" height="100%"></img>'
 });
 
-
+OKnesset.app.views.ProtocolSectionView.Spokeman = new Ext.extend(Ext.Panel, {
+    id: 'Spokeman',
+    tpl: '<div dir="rtl" s><font size="5" color="#FFFAF0"><b>{protocol_text}</b></font></div>'
+});
 

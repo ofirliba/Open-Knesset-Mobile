@@ -1,7 +1,6 @@
 Ext.regController('Protocol', {
-
     // index action
-	//console.log('Ok1');
+	
     Index: function(options)
     {
         if (!this.protocolView)
@@ -15,44 +14,57 @@ Ext.regController('Protocol', {
             protocolController.addListener('itemtap',
                 	function(that, index, item, e) {
     					var record = that.store.getAt(index);
-    					OKnesset.app.controllers.navigation.dispatchPanel('Member/Index/' + record.data.id, options.historyUrl);
+    					var memberObj= OKnesset.GetMembersByName(record.data.name);
+    					OKnesset.app.controllers.navigation.dispatchPanel('Member/Index/' + memberObj[0].id, options.historyUrl);
             });
+           
             //when tap on the spokeman and text
             var spokemantap = this.protocolView.query('#ProtocolText')[0];
             spokemantap.addListener('itemtap',
                 	function(that, index, item, e) {
     					var record = that.store.getAt(index);
-    					OKnesset.app.controllers.navigation.dispatchPanel('ProtocolSection/Index/', options.historyUrl);
+    					//only the even lines will be clickable
+    					if((index)%2 == 0){ 
+    					OKnesset.app.controllers.navigation.dispatchPanel('ProtocolSection/Index/' + index, options.historyUrl)
+    					};
             });
-            console.log('Ok2');
             
             Ext.util.JSONP.request({
-    		    url: 'http://www.oknesset.org/api/committeemeeting/6720/',
+    		    url: 'http://www.oknesset.org/api/committeemeeting/6728/',
     		    callbackKey : "callback",
     		    onFailure : function(){console.log("failure");},
     			callback : function(data){
     		     // creating ProtocolStore
     		     var tmpArray = [];
             	 tmpArray.push(data);
-            	// console.log(data);
                  OKnesset.Protocol2Store.loadData(tmpArray);
                  // creating ProtocolMembersStore
             	 OKnesset.ProtocolMembersStore.loadData(data.mks_attended);
             	// creating ProtocolTextStore
-            	 var protocolArray = [];
         	     var protocolArray= data.protocol_text.split(/[<>]/);
             	 var protocolText =[];
             	 protocolArray.forEach(function(e){
             		 protocolText.push({protocol_text: e});
             	 });
-            	 console.log(protocolText);
+            	 
+            	 //split the array to even array and odd array
+            	 //even array contain the title/spokeman
+            	 //odd array conatain the text
+            	 var protocolArrayEven=[];
+            	 var protocolArrayOdd=[];
+            	 //the "for" loop considering that the array is even
+            	 for (i=0; i<(protocolText.length/2); i++){
+            		 protocolArrayEven[i]=protocolText[2*i];
+            		 protocolArrayOdd[i]=protocolText[2*i+1];
+            	 }
+            	 OKnesset.ProtocolTopicsStoreEven.loadData(protocolArrayEven);
+            	 OKnesset.ProtocolTopicsStoreOdd.loadData(protocolArrayOdd);
             	 OKnesset.ProtocolTopicsStore.loadData(protocolText);
-         
     		    },
     		});
            
         }
-	
+        
         this.application.viewport.query('#toolbar')[0].setTitle(OKnesset.strings.Committeemeeting);
         this.application.viewport.setActiveItem(this.protocolView, options.animation);
         
@@ -70,8 +82,6 @@ Ext.regController('Protocol', {
         		});
         	}
         }
-        
-        console.log('Ok4');
     
 	},
 	
@@ -80,36 +90,3 @@ Ext.regController('Protocol', {
 		this.protocolView.refresh();
 	}
 });
-/*
-var PROTOCOL_TYPE_TITLE = 0;
-var PROTOCOL_TYPE_MEMBER = 1;
-var PROTOCOL_TYPE_TEXT = 2;
-
-convertData = function(data){
-	var result = new Array();
-	result.push({
-		title:"dddd",
-		test:"",
-		type: PROTOCOL_TYPE_TITLE 
-	});
-	result.push({
-		title:"",
-		test:"sdsdsdssdsd",
-		type: PROTOCOL_TYPE_TEXT
-	});
-	
-	
-	
-	for (item in data.mks_attended){
-		result.push({
-			title:item.name,
-			test:"sdsdsdssdsd",
-			type: PROTOCOL_TYPE_TEXT,
-			id: getMemberIDFromURL(item.url)
-		});
-		
-	}
-	
-	
-	
-}*/
