@@ -12,17 +12,27 @@ Ext.regController('ProtocolSection', {
        //assuming the data is in pairs ( the first line is the title and the second is the desription) 
        //this is why the jumps are X2 .
         //enable/disable next/prev buttons when at the edges of the list
-        if ((options.id) >= OKnesset.ProtocolTopicsStore.data.length-2) {this.protocolsectionView.query('#next_spokemanBtn')[0].disable()}
-        if ((options.id) < OKnesset.ProtocolTopicsStore.data.length-2){this.protocolsectionView.query('#next_spokemanBtn')[0].enable()}
-        console.log( OKnesset.ProtocolTopicsStore.data.length);
+        if ((options.id) >= OKnesset.ProtocolTopicsStore.data.length-2) {
+        	this.protocolsectionView.query('#next_spokemanBtn')[0].disable()
+        }
+        
+        if ((options.id) < OKnesset.ProtocolTopicsStore.data.length-2){
+        	this.protocolsectionView.query('#next_spokemanBtn')[0].enable()
+        }
+        
         this.protocolsectionView.query('#next_spokemanBtn')[0].setHandler(function(){
         	options.id ++;
         	options.id ++;
         	OKnesset.app.controllers.navigation.dispatchPanel('ProtocolSection/Index/'+options.id,options.historyUrl);
         });
-        console.log(options.id);
-        if ((options.id) == 0) {this.protocolsectionView.query('#pre_spokemanBtn')[0].disable()}
-        if ((options.id) > 0){this.protocolsectionView.query('#pre_spokemanBtn')[0].enable()}
+        
+        if ((options.id) == 0) {
+        	this.protocolsectionView.query('#pre_spokemanBtn')[0].disable()
+        }
+        if ((options.id) > 0){
+        	this.protocolsectionView.query('#pre_spokemanBtn')[0].enable()
+        }
+        
         this.protocolsectionView.query('#pre_spokemanBtn')[0].setHandler(function(){
         	options.id --;
         	options.id --;
@@ -48,7 +58,6 @@ Ext.regController('ProtocolSection', {
 
 	updateData : function(record){
 		this.protocolsectionView.query('#Text')[0].update(record.data);
-		console.log(record);
 		this.protocolsectionView.query('#Spokeman')[0].update(record.data);
 	}
 });

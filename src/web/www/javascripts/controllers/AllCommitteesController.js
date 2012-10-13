@@ -22,7 +22,6 @@ Ext.regController('AllCommittees', {
 		    callbackKey : "callback",
 			callback : function(data){
 		    	OKnesset.AllCommitteesStore.loadData(data.objects);
-		    	 console.log(data);
 		    
 		    	},
 			onFailure : function(){console.log("Failure!");}
@@ -30,13 +29,7 @@ Ext.regController('AllCommittees', {
    
         this.application.viewport.query('#toolbar')[0].setTitle(OKnesset.strings.committees);
         this.application.viewport.setActiveItem(this.AllCommitteesView, options.animation);
-
-/*
-    getReviewButtonText : function(){
-    	return OKnesset.strings.emailPartyList;
-    },
-*/
-    },
+},
 	refresh : function() {
 		this.AllCommitteesView.refresh();
 	 }

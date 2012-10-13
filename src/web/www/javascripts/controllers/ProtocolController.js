@@ -68,7 +68,11 @@ Ext.regController('Protocol', {
         this.application.viewport.query('#toolbar')[0].setTitle(OKnesset.strings.Committeemeeting);
         this.application.viewport.setActiveItem(this.protocolView, options.animation);
         
+        
+        
         if (options.pushed){
+        	var protocolController = this.protocolView.query('#ProtocolMembers')[0];
+            var spokemantap = this.protocolView.query('#ProtocolText')[0];
         	if (spokemantap.scroller) {
         		spokemantap.scroller.scrollTo({
         			x: 0,

@@ -20,7 +20,6 @@ OKnesset.app.views.ProtocolSectionView = new Ext.extend(Ext.Panel, {
 					dock: 'top',
 					height: '75px',
 					maxHeight:'100px',
-					
 					padding: '5' ,
 					items: [this.image,{xtype: 'spacer'},this.spokeman]
 				 },{
@@ -49,12 +48,12 @@ OKnesset.app.views.ProtocolSectionView.Text = new Ext.extend(Ext.Panel, {
 
 OKnesset.app.views.ProtocolSectionView.SpokemanImage = new Ext.extend(Ext.Panel, {
     id: 'SpokemanImage',
-    height : "5em",
     html: '<img src="http://www.inspiredhealthcoaching.com/wp-content/uploads/2012/08/red_x.jpg" height="100%"></img>'
 });
 
 OKnesset.app.views.ProtocolSectionView.Spokeman = new Ext.extend(Ext.Panel, {
     id: 'Spokeman',
+    layout: 'fit',
     tpl: '<div dir="rtl" s><font size="5" color="#FFFAF0"><b>{protocol_text}</b></font></div>'
 });
 
